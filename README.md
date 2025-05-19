@@ -1,5 +1,5 @@
 # OpenCV core
-# CNN Image Classifier – PyTorch
+## CNN Image Classifier – PyTorch
 
 This is a simple image classification project using a Convolutional Neural Network (CNN) trained on the CIFAR-10 dataset with PyTorch.
 
