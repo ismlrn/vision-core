@@ -48,3 +48,30 @@ class SimpleCNN(nn.Module):
         return x
 
 model = SimpleCNN()
+
+# training model on train dataset
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+
+for epoch in range(2):  # just 2 epochs to test
+    running_loss = 0.0
+    for inputs, labels in trainloader:
+        optimizer.zero_grad()
+        outputs = model(inputs)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+        running_loss += loss.item()
+    print(f"[{epoch+1}] loss: {running_loss:.3f}")
+
+# measuring performance on test data
+correct = 0
+total = 0
+with torch.no_grad():
+    for inputs, labels in testloader:
+        outputs = model(inputs)
+        _, predicted = torch.max(outputs.data, 1)
+        total += labels.size(0)
+        correct += (predicted == labels).sum().item()
+
+print(f"Accuracy on test set: {100 * correct / total:.2f}%")
