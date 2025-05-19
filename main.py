@@ -75,3 +75,22 @@ with torch.no_grad():
         correct += (predicted == labels).sum().item()
 
 print(f"Accuracy on test set: {100 * correct / total:.2f}%")
+
+
+# showing some of results of model outputs
+classes = trainset.classes
+
+def imshow(img):
+    img = img / 2 + 0.5 
+    plt.imshow(torch.permute(img, (1, 2, 0)))
+    plt.show()
+
+dataiter = iter(testloader)
+images, labels = next(dataiter)
+outputs = model(images)
+_, preds = torch.max(outputs, 1)
+
+# Show first 4 images with predictions
+for i in range(4):
+    imshow(images[i])
+    print(f"True: {classes[labels[i]]}, Pred: {classes[preds[i]]}")
