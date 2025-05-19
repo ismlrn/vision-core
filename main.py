@@ -49,7 +49,7 @@ class SimpleCNN(nn.Module):
 
 model = SimpleCNN()
 
-# training model on train dataset
+# training the model on train dataset
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 
@@ -81,7 +81,7 @@ print(f"Accuracy on test set: {100 * correct / total:.2f}%")
 classes = trainset.classes
 
 def imshow(img):
-    img = img / 2 + 0.5 
+    img = img / 2 + 0.5
     plt.imshow(torch.permute(img, (1, 2, 0)))
     plt.show()
 
